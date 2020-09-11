@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/student}" th:object="${studentForm}" method="GET">
+    Имя:
+    <input type="text" th:field="*{firstName}" />
+    <br/>
+     Фамилия:
+    <input type="text" th:field="*{lastName}" />
+    <br/>
+    <input type="submit" value="Поиск" />
+</form>
+<div th:if="!${student}">
+    <b style="color: red">Студент с такими данными не существует</b>
+</div>
+<br/>
+<div th:if="${student}">
+    <a th:href="@{http://localhost:8080/page2}">
+         <span th:utext="${student.firstName}"></span>
+         <span th:utext="${student.lastName}"></span>
+         <span th:utext="${student.totalScore}"></span>
+         <span>балов</span>
+
+    </a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Страница 2</h1>
+<form th:action="@{/abiturient}" th:object="${instituteForm}" method="Post">
+    <table>
+        <tr>
+            <td>
+                Выберите ВУЗ:
+                <select th:field="*{instituteId}">
+                    <option value=""> __ </option>
+                    <option th:each="institute : ${institutes}"
+                            th:value="${institute.getId()}"
+                            th:utext="${institute.getName()}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Профессия:
+                <input type="text" th:field="*{profession}" />
+            </td>
+        </tr>
+
+        <tr>
+            <td><input name="submit" type="submit" value="сохранить" /></td>
+        </tr>
+    </table>
+</form>
+<br/>
+<div th:if="${result}">
+<b th:utext="${result}"></b>
+</div>
+</body>
+</html>
